@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="form.css">
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Roboto">
+    <title>Form</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h2>Create Account</h2>
+        </div>
+        
+        <form id="form" class="form">
+            <div class="form-control success">
+                <label id="username" for="Username">Username</label>
+                <input type="text" placeholder="unique name">
+                <i class="fas fa-check-circle"></i>
+                <i class="fas fa-exclamation-circle"></i>
+                <small>Error Message</small>
+            </div>
+
+            <div class="form-control error">
+                <label id="name" for="Name">Name</label>
+                <input type="text" placeholder="full name">
+                <i class="fab fa-check-circle"></i>
+                <i class="fab fa-exclamation-circle"></i>
+                <small>Error Message</small>
+            </div>
+
+             <div class="form-control">
+                 <label id="email" for="email">Email</label>
+                 <input type="email" placeholder="enter email">
+                 <i class="fas fa-check-circle"></i>
+                 <i class="fas fa-exclamation-circle"></i>
+                 <small>Error Message</small>
+             </div>
+
+            <div class="form-control">
+                <label id="password" for="password">Password</label>
+                <input type="password" placeholder="enter password">
+                <i class="fas fa-check-circle"></i>
+                <i class="fas fa-exclamation-circle"></i>
+                <small>Error Message</small>
+            </div>
+
+             <div class="form-control">
+                 <label id="password2" for="password">Confirm Password</label>
+                 <input type="password" placeholder="confirm password">
+                 <i class="fas fa-check-circle"></i>
+                 <i class="fas fa-exclamation-circle"></i>
+                 <small>Error Message</small>
+             </div>
+             <button>Submit</button>
+        </form>
+    </div>
+</body>
+</html>
