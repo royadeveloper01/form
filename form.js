@@ -20,13 +20,12 @@ const checkInputs = () => {
     const passwordInput = password.value;
     const password2Input = password2.value;
 
+    usernameInput == "" ? setErrorFor(username):setSuccessFor(username)
+    nameInput == "" ? setErrorFor(name):setSuccessFor(name)
+    emailInput == "" ? setErrorFor(email):setSuccessFor(email)
+    passwordInput == "" ? setErrorFor(password):setSuccessFor(password)
+    password2Input == "" ? setErrorFor(password2):setSuccessFor(password2)
 
-    if (usernameInput == "") {
-        setErrorFor(username);
-        
-    } else {
-        setSuccessFor(username);
-    }
 
 }
 
