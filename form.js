@@ -15,31 +15,37 @@ form.addEventListener('submit', (e) => {
 const checkInputs = () => {
     // get the values from the inputs
     const usernameInput = username.value;
-    const nameInput = name.value;
-    const emailInput = email.value;
-    const passwordInput = password.value;
-    const password2Input = password2.value;
+    const nameInput = name.value.trim();
+    const emailInput = email.value.trim();
+    const passwordInput = password.value.trim();
+    const password2Input = password2.value.trim();
 
-    usernameInput == "" ? setErrorFor(username):setSuccessFor(username)
-    nameInput == "" ? setErrorFor(name):setSuccessFor(name)
-    emailInput == "" ? setErrorFor(email):setSuccessFor(email)
-    passwordInput == "" ? setErrorFor(password):setSuccessFor(password)
-    password2Input == "" ? setErrorFor(password2):setSuccessFor(password2)
+    // Username Validation
+    usernameInput == "" ? setErrorFor(username, "Username cannot be blank") : setSuccessFor(username);
+    // Full Name Validation
+    nameInput == "" ? setErrorFor(name, "Name cannot be blank") : setSuccessFor(name);
+    // Email Validation
+    emailInput == ""
+        ? setErrorFor(email, 'Email cannot be blank')
+        : !isEmailValid(emailInput) ? setErrorFor(email, "Email is not valid") 
+            : setSuccessFor(email)
+    // Password Validation 
+    
+    // passwordInput == "" ? setErrorFor(password):setSuccessFor(password)
+    // password2Input == "" ? setErrorFor(password2):setSuccessFor(password2)
 
 
 }
 
-let setErrorFor = (input) => {
+let setErrorFor = (input, message) => {
 
-    const formControls = input.parentElement;
-    formControls.className = 'form-control error';
+    const formControl = input.parentElement;
+    formControl.className = 'form-control error';
 
-    // let Small = input.querySelector('small');
+    const small = formControl.querySelector('small');
 
-    // //  show error message
-    // Small.innerText = message;
-
-   // add error class
+    // show error message
+    small.innerText = message;
     
 }
 
@@ -47,4 +53,9 @@ let setSuccessFor = (input) => {
 
     const formControl = input.parentElement;
     formControl.className = 'form-control success';
+}
+
+const isEmailValid = (email) => {
+    const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(String(email).toLowerCase());
 }
