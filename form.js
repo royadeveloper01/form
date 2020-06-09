@@ -20,22 +20,30 @@ const checkInputs = () => {
     const passwordInput = password.value;
     const password2Input = password2.value;
 
-    usernameInput === '' ? setSuccessFor(username) : setErrorFor(username, `Username can't be blank`);
+    usernameInput == "" ? setErrorFor(username):setSuccessFor(username)
+    nameInput == "" ? setErrorFor(name):setSuccessFor(name)
+    emailInput == "" ? setErrorFor(email):setSuccessFor(email)
+    passwordInput == "" ? setErrorFor(password):setSuccessFor(password)
+    password2Input == "" ? setErrorFor(password2):setSuccessFor(password2)
+
+
 }
 
-const setErrorFor = (input, message) => {
+let setErrorFor = (input) => {
 
-    const formControl = input.parentElement; 
-    const small = input.querySelector(small);
+    const formControls = input.parentElement;
+    formControls.className = 'form-control error';
 
-    //  show error message
-    small.innerText = message;
+    // let Small = input.querySelector('small');
+
+    // //  show error message
+    // Small.innerText = message;
 
    // add error class
-    formControl.className = 'form-control error';
+    
 }
 
-const setSuccessFor = (input) => {
+let setSuccessFor = (input) => {
 
     const formControl = input.parentElement;
     formControl.className = 'form-control success';
