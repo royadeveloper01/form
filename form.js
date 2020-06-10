@@ -29,12 +29,18 @@ const checkInputs = () => {
         ? setErrorFor(email, 'Email cannot be blank')
         : !isEmailValid(emailInput) ? setErrorFor(email, "Email is not valid") 
             : setSuccessFor(email)
-    // Password Validation 
     
-    // passwordInput == "" ? setErrorFor(password):setSuccessFor(password)
-    // password2Input == "" ? setErrorFor(password2):setSuccessFor(password2)
-
-
+    // Password Validation 
+    passwordInput == ""
+        ? setErrorFor(password, "Password cannot be blank")
+        : !checkPassword(passwordInput) ? setErrorFor(password, errorMessage)
+            : setSuccessFor(password)
+    
+    // Checking if the password matches
+    password2Input == ""
+        ? setErrorFor(password2, "Password cannot be blank")
+        : passwordInput !== password2Input ? setErrorFor(password2, "Password does not match")
+        : setSuccessFor(password2)
 }
 
 let setErrorFor = (input, message) => {
@@ -50,12 +56,20 @@ let setErrorFor = (input, message) => {
 }
 
 let setSuccessFor = (input) => {
-
     const formControl = input.parentElement;
     formControl.className = 'form-control success';
 }
 
 const isEmailValid = (email) => {
+    // Check if email is valid
     const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(String(email).toLowerCase());
+}
+
+const errorMessage = "Password should contain at least one num, one lowercase and one uppercase letter!";
+const checkPassword = (str) => {
+    // at least one number, one lowercase and one uppercase letter
+    // at least six characters that are letters, numbers or the underscore
+    let re = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])\w{6,}$/;
+    return re.test(str);
 }
