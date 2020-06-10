@@ -14,14 +14,17 @@ form.addEventListener('submit', (e) => {
 
 const checkInputs = () => {
     // get the values from the inputs
-    const usernameInput = username.value;
+    const usernameInput = username.value.trim();
     const nameInput = name.value.trim();
     const emailInput = email.value.trim();
     const passwordInput = password.value.trim();
     const password2Input = password2.value.trim();
 
     // Username Validation
-    usernameInput == "" ? setErrorFor(username, "Username cannot be blank") : setSuccessFor(username);
+    usernameInput == ""
+        ? setErrorFor(username, "Username cannot be blank")
+        : !uniqueName(usernameInput) ? setErrorFor(username, userMessage)
+        : setSuccessFor(username);
     // Full Name Validation
     nameInput == "" ? setErrorFor(name, "Name cannot be blank") : setSuccessFor(name);
     // Email Validation
@@ -66,10 +69,19 @@ const isEmailValid = (email) => {
     return re.test(String(email).toLowerCase());
 }
 
+// For a Unique Password
 const errorMessage = "Password should contain at least one num, one lowercase and one uppercase letter!";
 const checkPassword = (str) => {
     // at least one number, one lowercase and one uppercase letter
     // at least six characters that are letters, numbers or the underscore
     let re = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])\w{6,}$/;
     return re.test(str);
+}
+
+// For a unique username
+const userMessage = "must contain alphabet and number"
+const uniqueName = (str) => {
+    // Username must contain alphabet and number
+    let alphaExp = /([a-z].*[0-9])|([0-9].*[a-z])/i;
+    return alphaExp.test(str);
 }
